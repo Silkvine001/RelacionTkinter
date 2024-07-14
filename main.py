@@ -10,6 +10,7 @@ conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
 
+
 def Enviaruno(ListaTuplas, ListaSeleccion_f):
 
     for elements in ListaTuplas.curselection():
@@ -73,7 +74,6 @@ def EnviarTodos(ListaTuplas, ListaSeleccion_f):
     # Borrar de la lista anterior
     ListaTuplas.delete(0, 'end')
 
-
 def RegresarTodos(ListaTuplas, ListaSeleccion_f):
     # Obtener cuantos elementos hay
     total_items = ListaTuplas.size()
@@ -93,7 +93,7 @@ def RegresarTodos(ListaTuplas, ListaSeleccion_f):
     ListaTuplas.delete(0, 'end')
 
 
-
+#INSERION ELEMENTOS A LISTA
 def relacionesLista(entry_a, entry_b, ListaTuplas):
     valor_a = entry_a.get()
     valor_b = entry_b.get()
@@ -120,7 +120,7 @@ def click_boton():
         widget.destroy()
     print("widgets eliminados \u2713")
 
-
+#VENTANA RELACIONES
 def relaciones():
     #se remueve el texto de bienvenida
     for widget in frame2.winfo_children():
@@ -167,10 +167,7 @@ def relaciones():
     scrollrelaciones.config(command=ListaTuplas.yview)
     scrollrelaciones.place(relx=0.957, rely=0.5, relheight=0.65, anchor="center")
 
-    #boton para enviar a la relacion
-    Boton_enviar_uno = ttk.Button(frame2, text=">", style="Accent.TButton", command=lambda: Enviaruno(ListaTuplas,ListaSeleccion_f))
-    Boton_enviar_uno.grid(row=1, column=1, padx=10, pady=10, sticky='ews')
-    frame2.rowconfigure(1, weight=3)
+
 
     #Titulos para cada frame
 
@@ -182,20 +179,27 @@ def relaciones():
     titulo_tuplas_AXB = tkinter.Label(frame2, text="Relacion R", fg="white")
     titulo_tuplas_AXB.place(relx=0.725, rely=0.15, relheight=0.05, anchor="center")
 
-    #boton para regresar de la relacion a la seleccion
-    Boton_enviar_uno = ttk.Button(frame2, text="<", style="Accent.TButton", command=lambda: Regresaruno(ListaSeleccion_f,ListaTuplas))
-    Boton_enviar_uno.grid(row=1, column=3, padx=10, pady=10, sticky='ews')
-    frame2.rowconfigure(1, weight=3)
+    #boton para enviar a la relacion
+    Boton_enviar_uno = ttk.Button(frame2, text=">", style="Accent.TButton", command=lambda: Enviaruno(ListaTuplas,ListaSeleccion_f))
+    Boton_enviar_uno.grid(row=2, column=1, padx=1, pady=0, sticky='es')
+    frame2.rowconfigure(2, weight=3)
 
     #boton para enviar todo
     Boton_enviar_uno = ttk.Button(frame2, text=">>", style="Accent.TButton", command=lambda: EnviarTodos(ListaTuplas,ListaSeleccion_f))
-    Boton_enviar_uno.grid(row=2, column=1, padx=10, pady=10, sticky='ews')
-    frame2.rowconfigure(1, weight=3)
+    Boton_enviar_uno.grid(row=2, column=2, padx=1, pady=0, sticky='es')
+    frame2.rowconfigure(2, weight=3)
+
+
+    #boton para regresar de la relacion a la seleccion
+    Boton_enviar_uno = ttk.Button(frame2, text="<", style="Accent.TButton", command=lambda: Regresaruno(ListaSeleccion_f,ListaTuplas))
+    Boton_enviar_uno.grid(row=2, column=3, padx=1, pady=0, sticky='ws')
+    frame2.rowconfigure(2, weight=3)
+
 
     #boton para regresar todo
     Boton_enviar_uno = ttk.Button(frame2, text="<<", style="Accent.TButton", command=lambda: RegresarTodos(ListaSeleccion_f,ListaTuplas))
-    Boton_enviar_uno.grid(row=2, column=3, padx=10, pady=10, sticky='ews')
-    frame2.rowconfigure(1, weight=3)
+    Boton_enviar_uno.grid(row=2, column=4, padx=1, pady=0, sticky='ws')
+    frame2.rowconfigure(2, weight=3)
 
 
 #ventana principal
