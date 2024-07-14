@@ -55,25 +55,56 @@ def Regresaruno(ListaTuplas, ListaSeleccion_f):
         ListaTuplas.delete(elements)
 
 
+def EnviarTodos(ListaTuplas, ListaSeleccion_f):
+    # Obtener cuantos elementos hay
+    total_items = ListaTuplas.size()
+
+    for i in range(total_items):
+        seleccionTupla = ListaTuplas.get(i)
+        print(seleccionTupla)
+        # Insertamos en la otra lista
+        ListaTuplasLista = []
+        for elemento_a in seleccionTupla[1]:
+            for elemento_b in seleccionTupla[4]:
+                ListaTuplasLista.append((elemento_a, elemento_b))
+                ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
+            print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
+
+    # Borrar de la lista anterior
+    ListaTuplas.delete(0, 'end')
+
+
+def RegresarTodos(ListaTuplas, ListaSeleccion_f):
+    # Obtener cuantos elementos hay
+    total_items = ListaTuplas.size()
+
+    for i in range(total_items):
+        seleccionTupla = ListaTuplas.get(i)
+        print(seleccionTupla)
+        # Insertamos en la otra lista
+        ListaTuplasLista = []
+        for elemento_a in seleccionTupla[1]:
+            for elemento_b in seleccionTupla[4]:
+                ListaTuplasLista.append((elemento_a, elemento_b))
+                ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
+            print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
+
+    # Borrar de la lista anterior
+    ListaTuplas.delete(0, 'end')
+
+
 
 def relacionesLista(entry_a, entry_b, ListaTuplas):
     valor_a = entry_a.get()
     valor_b = entry_b.get()
-    if not valor_a:
-        popup = Toplevel(frame2)
-        popup.geometry("200x100")
-        popup.title("")
-        popupvacio = ttk.Label(popup, text="No ha ingresado ningun valor")
-        popupvacio.pack()
-    else:
-        conjunto_a = valor_a.split(",")
-        conjunto_b = valor_b.split(",")
-        print("el valor de a es", valor_a)
-        print("el valor de b es", valor_b)
+    conjunto_a = valor_a.split(",")
+    conjunto_b = valor_b.split(",")
+    print("el valor de a es", valor_a)
+    print("el valor de b es", valor_b)
 
-        print("el conjunto a es:", conjunto_a)
-        print("el conjunto b es:", conjunto_b)
-        ListaTuplas.delete(0, tkinter.END)
+    print("el conjunto a es:", conjunto_a)
+    print("el conjunto b es:", conjunto_b)
+    ListaTuplas.delete(0, tkinter.END)
 
     #Rellenado de la listbox
     ListaTuplasLista = []
@@ -132,6 +163,16 @@ def relaciones():
     #boton para regresar de la relacion a la seleccion
     Boton_enviar_uno = ttk.Button(frame2, text="<", style="Accent.TButton", command=lambda: Regresaruno(ListaSeleccion_f,ListaTuplas))
     Boton_enviar_uno.grid(row=1, column=3, padx=10, pady=10, sticky='ews')
+    frame2.rowconfigure(1, weight=3)
+
+    #boton para enviar todo
+    Boton_enviar_uno = ttk.Button(frame2, text=">>", style="Accent.TButton", command=lambda: EnviarTodos(ListaTuplas,ListaSeleccion_f))
+    Boton_enviar_uno.grid(row=2, column=1, padx=10, pady=10, sticky='ews')
+    frame2.rowconfigure(1, weight=3)
+
+    #boton para regresar todo
+    Boton_enviar_uno = ttk.Button(frame2, text="<<", style="Accent.TButton", command=lambda: RegresarTodos(ListaSeleccion_f,ListaTuplas))
+    Boton_enviar_uno.grid(row=2, column=3, padx=10, pady=10, sticky='ews')
     frame2.rowconfigure(1, weight=3)
 
 
