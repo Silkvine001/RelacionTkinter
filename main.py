@@ -16,8 +16,7 @@ def Enviaruno(ListaTuplas, ListaSeleccion_f):
         seleccionTupla = ListaTuplas.get(elements)
         print(seleccionTupla)
         
-        # Extract elements from the tuple string
-        # Assuming the tuple format is always "(elemento_a, elemento_b)"
+        # Extrae los elementos bajo el formato que se espera: "(elemento_a, elemento_b)"
         seleccionTupla = seleccionTupla.strip('()').split(', ')
         
         elemento_a = seleccionTupla[0]
@@ -27,7 +26,7 @@ def Enviaruno(ListaTuplas, ListaSeleccion_f):
         
         print(f"Las tuplas del conjunto A y B son: {elemento_a}, {elemento_b}")
 
-    # Eliminate the selected elements from ListaTuplas
+    # Borramos los elementos de la lista previa
     indices_a_eliminar = list(ListaTuplas.curselection())
     for elements in reversed(indices_a_eliminar):
         ListaTuplas.delete(elements)
@@ -39,8 +38,7 @@ def Regresaruno(ListaTuplas, ListaSeleccion_f):
         seleccionTupla = ListaTuplas.get(elements)
         print(seleccionTupla)
         
-        # Extract elements from the tuple string
-        # Assuming the tuple format is always "(elemento_a, elemento_b)"
+        # Extrae los elementos bajo el formato que se espera: "(elemento_a, elemento_b)"
         seleccionTupla = seleccionTupla.strip('()').split(', ')
         
         elemento_a = seleccionTupla[0]
@@ -73,8 +71,7 @@ def EnviarTodos(ListaTuplas, ListaSeleccion_f):
         seleccionTupla = ListaTuplas.get(i)
         print(seleccionTupla)
 
-        # Extract elements from the tuple string
-        # Assuming the tuple format is always "(elemento_a, elemento_b)"
+        # Extrae los elementos bajo el formato que se espera: "(elemento_a, elemento_b)"
         seleccionTupla = seleccionTupla.strip('()').split(', ')
         
         elemento_a = seleccionTupla[0]
@@ -96,8 +93,7 @@ def RegresarTodos(ListaTuplas, ListaSeleccion_f):
         seleccionTupla = ListaTuplas.get(i)
         print(seleccionTupla)
 
-        # Extract elements from the tuple string
-        # Assuming the tuple format is always "(elemento_a, elemento_b)"
+        # Extrae los elementos bajo el formato que se espera: "(elemento_a, elemento_b)"
         seleccionTupla = seleccionTupla.strip('()').split(', ')
         
         elemento_a = seleccionTupla[0]
