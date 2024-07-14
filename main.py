@@ -13,6 +13,7 @@ def Enviaruno(ListaTuplas):
     for elements in ListaTuplas.curselection():
         seleccionTupla = ListaTuplas.get(elements)
         print(seleccionTupla)
+#    seleccionTuplas = ListaTuplas.get(ListaTuplas.curselection())
 
 
 def relacionesLista(entry_a, entry_b, ListaTuplas):
