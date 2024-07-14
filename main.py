@@ -10,18 +10,27 @@ conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
 def Enviaruno(ListaTuplas, ListaSeleccion_f):
+
     for elements in ListaTuplas.curselection():
         seleccionTupla = ListaTuplas.get(elements)
         print(seleccionTupla)
+        #Insertamos en la otra lista
         ListaTuplasLista = []
         for elemento_a in seleccionTupla[1]:
             for elemento_b in seleccionTupla[4]:
                 ListaTuplasLista.append((elemento_a, elemento_b))
                 ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
             print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
-#    seleccionTuplas = ListaTuplas.get(ListaTuplas.curselection())
-#Prueba insercion
-        #ListaSeleccion_f.insert("end", f"({i})")
+            
+    #Eliminamos los elementos de la lista anterior
+
+    #Ponemos los indices en otra lista
+    indices_a_eliminar = list(ListaTuplas.curselection())
+
+    #Elimnamos los elementos que coinciden
+    for elements in reversed(indices_a_eliminar):
+        ListaTuplas.delete(elements)
+
     
 
 
