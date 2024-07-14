@@ -9,19 +9,20 @@ entry_b = 0
 conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
-def Enviaruno(ListaTuplas,ListaSeleccion_f):
+def Enviaruno(ListaTuplas, ListaSeleccion_f):
     for elements in ListaTuplas.curselection():
         seleccionTupla = ListaTuplas.get(elements)
-    print(seleccionTupla)
+        print(seleccionTupla)
+        ListaTuplasLista = []
+        for elemento_a in seleccionTupla[1]:
+            for elemento_b in seleccionTupla[4]:
+                ListaTuplasLista.append((elemento_a, elemento_b))
+                ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
+            print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
 #    seleccionTuplas = ListaTuplas.get(ListaTuplas.curselection())
 #Prueba insercion
         #ListaSeleccion_f.insert("end", f"({i})")
-    ListaTuplasLista = []
-    for elemento_a in seleccionTupla[1]:
-        for elemento_b in seleccionTupla[4]:
-            ListaTuplasLista.append((elemento_a, elemento_b))
-            ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
-    print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
+    
 
 
 def relacionesLista(entry_a, entry_b, ListaTuplas):
