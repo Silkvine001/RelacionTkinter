@@ -155,7 +155,7 @@ def relaciones():
     #boton para regresar de la relacion a la seleccion
     Boton_regresar_uno = ttk.Button(frame2, text="<", style="Button.TButton", command=lambda: Enviaruno(ListaSeleccion_f,ListaTuplas))
     Boton_regresar_uno.place(relx=0.547, rely=0.85, relwidth=0.17)
-#    Boton_enviar_uno.grid(row=2, column=3, padx=1, pady=0, sticky='ws')
+#   Boton_enviar_uno.grid(row=2, column=3, padx=1, pady=0, sticky='ws')
 #   frame2.rowconfigure(2, weight=3)
 
 
