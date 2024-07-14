@@ -8,6 +8,11 @@ entry_a = 0
 entry_b = 0
 conjunto_a = 0
 conjunto_b = 0
+
+def Enviaruno(ListaSeleccion):
+    seleccionTuplas = ListaSeleccion.curselection()
+    print("Haz seleccionado:", seleccionTuplas)
+
 def relacionesLista(entry_a, entry_b, ListaTuplas):
     valor_a = entry_a.get()
     valor_b = entry_b.get()
@@ -19,11 +24,14 @@ def relacionesLista(entry_a, entry_b, ListaTuplas):
     print("el conjunto a es:", conjunto_a)
     print("el conjunto b es:", conjunto_b)
     ListaTuplas.delete(0, tkinter.END)
+
     #Rellenado de la listbox
+    ListaTuplasLista = []
     for elemento_a in conjunto_a:
         for elemento_b in conjunto_b:
+            ListaTuplasLista.append((elemento_a, elemento_b))
             ListaTuplas.insert("end", f"({elemento_a}, {elemento_b})")
-    print(f"Las tuplas del conjunto A y B son:")
+    print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
 
 
 def click_boton():
@@ -67,7 +75,7 @@ def relaciones():
     ListaSeleccion.place(relx=0.75, rely=0.5, relwidth=0.45, relheight=0.65, anchor="center")
 
     #boton para enviar a la relacion
-    Boton_enviar_uno = ttk.Button(frame2, text=">", style="Accent.TButton")
+    Boton_enviar_uno = ttk.Button(frame2, text=">", style="Accent.TButton", command=lambda: Enviaruno(ListaSeleccion))
     Boton_enviar_uno.grid(row=6, column=1, padx=10, pady=10)
 
 
