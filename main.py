@@ -9,11 +9,19 @@ entry_b = 0
 conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
-def Enviaruno(ListaTuplas):
+def Enviaruno(ListaTuplas,ListaSeleccion_f):
     for elements in ListaTuplas.curselection():
         seleccionTupla = ListaTuplas.get(elements)
-        print(seleccionTupla)
+    print(seleccionTupla)
 #    seleccionTuplas = ListaTuplas.get(ListaTuplas.curselection())
+#Prueba insercion
+        #ListaSeleccion_f.insert("end", f"({i})")
+    ListaTuplasLista = []
+    for elemento_a in seleccionTupla[1]:
+        for elemento_b in seleccionTupla[4]:
+            ListaTuplasLista.append((elemento_a, elemento_b))
+            ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
+    print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
 
 
 def relacionesLista(entry_a, entry_b, ListaTuplas):
@@ -74,11 +82,11 @@ def relaciones():
     ListaTuplas.place(relx=0.25, rely=0.5, relwidth=0.45, relheight=0.65, anchor="center")
 
     #Listbox relaciones
-    ListaSeleccion = Listbox(frame2, width=40, height=18)
-    ListaSeleccion.place(relx=0.75, rely=0.5, relwidth=0.45, relheight=0.65, anchor="center")
+    ListaSeleccion_f = Listbox(frame2, width=40, height=18)
+    ListaSeleccion_f.place(relx=0.75, rely=0.5, relwidth=0.45, relheight=0.65, anchor="center")
 
     #boton para enviar a la relacion
-    Boton_enviar_uno = ttk.Button(frame2, text=">", style="Accent.TButton", command=lambda: Enviaruno(ListaTuplas))
+    Boton_enviar_uno = ttk.Button(frame2, text=">", style="Accent.TButton", command=lambda: Enviaruno(ListaTuplas,ListaSeleccion_f))
     Boton_enviar_uno.grid(row=1, column=1, padx=10, pady=10, sticky='ews')
     frame2.rowconfigure(1, weight=3)
 
