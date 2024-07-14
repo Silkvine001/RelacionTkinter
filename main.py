@@ -10,7 +10,7 @@ conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
 def Enviaruno(ListaTuplas):
-    seleccionTuplas = ListaTuplas.curselection()
+    seleccionTuplas = ListaTuplas.get(ListaTuplas.curselection())
     if seleccionTuplas:
         print("Haz seleccionado:", seleccionTuplas)
     else:
