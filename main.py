@@ -10,11 +10,10 @@ conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
 def Enviaruno(ListaTuplas):
-    seleccionTuplas = ListaTuplas.get(ListaTuplas.curselection())
-    if seleccionTuplas:
-        print("Haz seleccionado:", seleccionTuplas)
-    else:
-        print("No se ha seleccionado ningún elemento.")
+    for elements in ListaTuplas.curselection():
+        seleccionTupla = ListaTuplas.get(elements)
+        print(seleccionTupla)
+
 
 def relacionesLista(entry_a, entry_b, ListaTuplas):
     valor_a = entry_a.get()
