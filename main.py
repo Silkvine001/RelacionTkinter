@@ -172,6 +172,16 @@ def relaciones():
     Boton_enviar_uno.grid(row=1, column=1, padx=10, pady=10, sticky='ews')
     frame2.rowconfigure(1, weight=3)
 
+    #Titulos para cada frame
+
+    #titulo tuplas
+    titulo_tuplas_AXB = tkinter.Label(frame2, text="Tuplas de A x B", fg="white")
+    titulo_tuplas_AXB.place(relx=0.215, rely=0.15, relheight=0.05, anchor="center")
+
+    #titulo relaciones
+    titulo_tuplas_AXB = tkinter.Label(frame2, text="Relacion R", fg="white")
+    titulo_tuplas_AXB.place(relx=0.725, rely=0.15, relheight=0.05, anchor="center")
+
     #boton para regresar de la relacion a la seleccion
     Boton_enviar_uno = ttk.Button(frame2, text="<", style="Accent.TButton", command=lambda: Regresaruno(ListaSeleccion_f,ListaTuplas))
     Boton_enviar_uno.grid(row=1, column=3, padx=10, pady=10, sticky='ews')
