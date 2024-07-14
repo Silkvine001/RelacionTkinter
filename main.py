@@ -8,7 +8,7 @@ entry_a = 0
 entry_b = 0
 conjunto_a = 0
 conjunto_b = 0
-
+ListaSeleccion = 0
 def Enviaruno(ListaSeleccion):
     seleccionTuplas = ListaSeleccion.curselection()
     print("Haz seleccionado:", seleccionTuplas)
@@ -76,8 +76,8 @@ def relaciones():
 
     #boton para enviar a la relacion
     Boton_enviar_uno = ttk.Button(frame2, text=">", style="Accent.TButton", command=lambda: Enviaruno(ListaSeleccion))
-    Boton_enviar_uno.grid(row=6, column=1, padx=10, pady=10)
-
+    Boton_enviar_uno.grid(row=1, column=1, padx=10, pady=10, sticky='ews')
+    frame2.rowconfigure(1, weight=3)
 
 
 
