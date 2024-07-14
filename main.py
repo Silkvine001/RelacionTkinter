@@ -32,37 +32,6 @@ def Enviaruno(ListaTuplas, ListaSeleccion_f):
         ListaTuplas.delete(elements)
 
 
-def Regresaruno(ListaTuplas, ListaSeleccion_f):
-
-    for elements in ListaTuplas.curselection():
-        seleccionTupla = ListaTuplas.get(elements)
-        print(seleccionTupla)
-        
-        # Extrae los elementos bajo el formato que se espera: "(elemento_a, elemento_b)"
-        seleccionTupla = seleccionTupla.strip('()').split(', ')
-        
-        elemento_a = seleccionTupla[0]
-        elemento_b = seleccionTupla[1]
-        
-        ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
-        
-        print(f"Las tuplas del conjunto A y B son: {elemento_a}, {elemento_b}")
-
-    # Eliminate the selected elements from ListaTuplas
-    indices_a_eliminar = list(ListaTuplas.curselection())
-    for elements in reversed(indices_a_eliminar):
-        ListaTuplas.delete(elements)
-            
-    #Eliminamos los elementos de la lista anterior
-
-    #Ponemos los indices en otra lista
-    indices_a_eliminar = list(ListaTuplas.curselection())
-
-    #Elimnamos los elementos que coinciden
-    for elements in reversed(indices_a_eliminar):
-        ListaTuplas.delete(elements)
-
-
 def EnviarTodos(ListaTuplas, ListaSeleccion_f):
     # Obtener cuantos elementos hay
     total_items = ListaTuplas.size()
@@ -85,26 +54,6 @@ def EnviarTodos(ListaTuplas, ListaSeleccion_f):
     ListaTuplas.delete(0, 'end')
 
 
-def RegresarTodos(ListaTuplas, ListaSeleccion_f):
-    # Obtener cuantos elementos hay
-    total_items = ListaTuplas.size()
-
-    for i in range(total_items):
-        seleccionTupla = ListaTuplas.get(i)
-        print(seleccionTupla)
-
-        # Extrae los elementos bajo el formato que se espera: "(elemento_a, elemento_b)"
-        seleccionTupla = seleccionTupla.strip('()').split(', ')
-        
-        elemento_a = seleccionTupla[0]
-        elemento_b = seleccionTupla[1]
-
-        ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
-        
-        print(f"Las tuplas del conjunto A y B son: {elemento_a}, {elemento_b}")
-
-    # Borrar de la lista anterior
-    ListaTuplas.delete(0, 'end')
 
 
 
@@ -204,14 +153,14 @@ def relaciones():
 
 
     #boton para regresar de la relacion a la seleccion
-    Boton_regresar_uno = ttk.Button(frame2, text="<", style="Button.TButton", command=lambda: Regresaruno(ListaSeleccion_f,ListaTuplas))
+    Boton_regresar_uno = ttk.Button(frame2, text="<", style="Button.TButton", command=lambda: Enviaruno(ListaSeleccion_f,ListaTuplas))
     Boton_regresar_uno.place(relx=0.547, rely=0.85, relwidth=0.17)
 #    Boton_enviar_uno.grid(row=2, column=3, padx=1, pady=0, sticky='ws')
 #   frame2.rowconfigure(2, weight=3)
 
 
     #boton para regresar todo
-    Boton_rergresar_todo = ttk.Button(frame2, text="<<", style="Button.TButton", command=lambda: RegresarTodos(ListaSeleccion_f,ListaTuplas))
+    Boton_rergresar_todo = ttk.Button(frame2, text="<<", style="Button.TButton", command=lambda: EnviarTodos(ListaSeleccion_f,ListaTuplas))
     Boton_rergresar_todo.place(relx=0.747, rely=0.85, relwidth=0.17)
 
 #    Boton_enviar_uno.grid(row=2, column=4, padx=1, pady=0, sticky='ws')
