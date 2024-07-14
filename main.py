@@ -12,39 +12,48 @@ ListaSeleccion = 0
 
 
 def Enviaruno(ListaTuplas, ListaSeleccion_f):
-
     for elements in ListaTuplas.curselection():
         seleccionTupla = ListaTuplas.get(elements)
         print(seleccionTupla)
-        #Insertamos en la otra lista
-        ListaTuplasLista = []
-        for elemento_a in seleccionTupla[1]:
-            for elemento_b in seleccionTupla[4]:
-                ListaTuplasLista.append((elemento_a, elemento_b))
-                ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
-            print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
-            
-    #Eliminamos los elementos de la lista anterior
+        
+        # Extract elements from the tuple string
+        # Assuming the tuple format is always "(elemento_a, elemento_b)"
+        seleccionTupla = seleccionTupla.strip('()').split(', ')
+        
+        elemento_a = seleccionTupla[0]
+        elemento_b = seleccionTupla[1]
+        
+        ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
+        
+        print(f"Las tuplas del conjunto A y B son: {elemento_a}, {elemento_b}")
 
-    #Ponemos los indices en otra lista
+    # Eliminate the selected elements from ListaTuplas
     indices_a_eliminar = list(ListaTuplas.curselection())
-
-    #Elimnamos los elementos que coinciden
     for elements in reversed(indices_a_eliminar):
         ListaTuplas.delete(elements)
+
 
 def Regresaruno(ListaTuplas, ListaSeleccion_f):
 
     for elements in ListaTuplas.curselection():
         seleccionTupla = ListaTuplas.get(elements)
         print(seleccionTupla)
-        #Insertamos en la otra lista
-        ListaTuplasLista = []
-        for elemento_a in seleccionTupla[1]:
-            for elemento_b in seleccionTupla[4]:
-                ListaTuplasLista.append((elemento_a, elemento_b))
-                ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
-            print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
+        
+        # Extract elements from the tuple string
+        # Assuming the tuple format is always "(elemento_a, elemento_b)"
+        seleccionTupla = seleccionTupla.strip('()').split(', ')
+        
+        elemento_a = seleccionTupla[0]
+        elemento_b = seleccionTupla[1]
+        
+        ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
+        
+        print(f"Las tuplas del conjunto A y B son: {elemento_a}, {elemento_b}")
+
+    # Eliminate the selected elements from ListaTuplas
+    indices_a_eliminar = list(ListaTuplas.curselection())
+    for elements in reversed(indices_a_eliminar):
+        ListaTuplas.delete(elements)
             
     #Eliminamos los elementos de la lista anterior
 
@@ -63,16 +72,21 @@ def EnviarTodos(ListaTuplas, ListaSeleccion_f):
     for i in range(total_items):
         seleccionTupla = ListaTuplas.get(i)
         print(seleccionTupla)
-        # Insertamos en la otra lista
-        ListaTuplasLista = []
-        for elemento_a in seleccionTupla[1]:
-            for elemento_b in seleccionTupla[4]:
-                ListaTuplasLista.append((elemento_a, elemento_b))
-                ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
-            print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
+
+        # Extract elements from the tuple string
+        # Assuming the tuple format is always "(elemento_a, elemento_b)"
+        seleccionTupla = seleccionTupla.strip('()').split(', ')
+        
+        elemento_a = seleccionTupla[0]
+        elemento_b = seleccionTupla[1]
+
+        ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
+        
+        print(f"Las tuplas del conjunto A y B son: {elemento_a}, {elemento_b}")
 
     # Borrar de la lista anterior
     ListaTuplas.delete(0, 'end')
+
 
 def RegresarTodos(ListaTuplas, ListaSeleccion_f):
     # Obtener cuantos elementos hay
@@ -81,16 +95,21 @@ def RegresarTodos(ListaTuplas, ListaSeleccion_f):
     for i in range(total_items):
         seleccionTupla = ListaTuplas.get(i)
         print(seleccionTupla)
-        # Insertamos en la otra lista
-        ListaTuplasLista = []
-        for elemento_a in seleccionTupla[1]:
-            for elemento_b in seleccionTupla[4]:
-                ListaTuplasLista.append((elemento_a, elemento_b))
-                ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
-            print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
+
+        # Extract elements from the tuple string
+        # Assuming the tuple format is always "(elemento_a, elemento_b)"
+        seleccionTupla = seleccionTupla.strip('()').split(', ')
+        
+        elemento_a = seleccionTupla[0]
+        elemento_b = seleccionTupla[1]
+
+        ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
+        
+        print(f"Las tuplas del conjunto A y B son: {elemento_a}, {elemento_b}")
 
     # Borrar de la lista anterior
     ListaTuplas.delete(0, 'end')
+
 
 
 #INSERION ELEMENTOS A LISTA
