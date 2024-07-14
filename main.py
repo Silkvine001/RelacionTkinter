@@ -179,8 +179,8 @@ def relaciones():
 #ventana principal
 root = Tk()
 root.title("Hecho por: Jonathan Salazar")
-root.minsize(820, 520)
-root.maxsize(1280, 520)
+root.minsize(820, 650)
+root.maxsize(1280, 720)
 
 root.rowconfigure(0, weight=1)
 root.columnconfigure(1, weight=1)
