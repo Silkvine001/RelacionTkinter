@@ -149,23 +149,23 @@ def relaciones():
 
     #Listbox Tuplas
     ListaTuplas = Listbox(frame2, selectmode="multiple")
-    ListaTuplas.place(relx=0.25, rely=0.5, relwidth=0.40, relheight=0.65, anchor="center")
+    ListaTuplas.place(relx=0.22, rely=0.5, relwidth=0.40, relheight=0.65, anchor="center")
     #Scrollbar Tuplas
     scrolltuplas = ttk.Scrollbar(frame2, orient="vertical")
     ListaTuplas.config(yscrollcommand=scrolltuplas.set)
     scrolltuplas.config(command=ListaTuplas.yview)
-    scrolltuplas.place(relx=0.47, rely=0.5, relheight=0.65, anchor="center")
+    scrolltuplas.place(relx=0.44, rely=0.5, relheight=0.65, anchor="center")
 
 
 
     #Listbox relaciones
     ListaSeleccion_f = Listbox(frame2, width=40, height=18, selectmode="multiple")
-    ListaSeleccion_f.place(relx=0.75, rely=0.5, relwidth=0.45, relheight=0.65, anchor="center")
+    ListaSeleccion_f.place(relx=0.735, rely=0.5, relwidth=0.40, relheight=0.65, anchor="center")
     #Scrollbar relaciones
     scrollrelaciones = ttk.Scrollbar(frame2, orient="vertical")
     ListaSeleccion_f.config(yscrollcommand=scrollrelaciones.set)
     scrollrelaciones.config(command=ListaTuplas.yview)
-    scrollrelaciones.place(relx=1, rely=0.5, relheight=0.65, anchor="center")
+    scrollrelaciones.place(relx=0.957, rely=0.5, relheight=0.65, anchor="center")
 
     #boton para enviar a la relacion
     Boton_enviar_uno = ttk.Button(frame2, text=">", style="Accent.TButton", command=lambda: Enviaruno(ListaTuplas,ListaSeleccion_f))
