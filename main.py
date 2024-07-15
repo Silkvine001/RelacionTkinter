@@ -12,9 +12,13 @@ ListaSeleccion = 0
 
 def Enviaruno(ListaTuplas, ListaSeleccion_f):
     for i in range(len(ListaTuplas.curselection())):
-        seleccionTuplas = ListaTuplas.get(i)
+        seleccionTuplas = ListaTuplas.get(ListaTuplas.curselection()[i])
         ListaSeleccion_f.insert("end", seleccionTuplas)
-        ListaTuplas.delete(i)
+
+    # Borramos los elementos de la lista previa
+    indices_a_eliminar = list(ListaTuplas.curselection())
+    for elements in reversed(indices_a_eliminar):
+        ListaTuplas.delete(elements)
 
 
 """
