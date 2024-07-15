@@ -43,8 +43,13 @@ def PropiedadesRel(RelacionR, Lista_a, Lista_b):
 
 def GenerarArreglo(ListaSeleccion_f, titulo_relaciones):
     global RelacionR
-    RelacionR = ListaSeleccion_f.get(0, "end")
-    #for elemento in len(ListaSeleccion_f.get(0, "end")):
+    RelacionR = list(ListaSeleccion_f.get(0, "end"))
+
+    for i in range(len(RelacionR)):
+        temp = RelacionR[i]
+        temp = temp[1:len(temp)-1].split(", ")
+        RelacionR[i] = (temp[0], temp[1])
+        
     titulo_relaciones.config(text="R = "+str(RelacionR))
     print(RelacionR)
 
