@@ -19,30 +19,6 @@ def Enviaruno(ListaTuplas, ListaSeleccion_f):
     for elements in reversed(ListaTuplas.curselection()):
         ListaTuplas.delete(elements)
 
-
-"""
-def Enviaruno(ListaTuplas, ListaSeleccion_f):
-    for elements in ListaTuplas.curselection():
-        seleccionTupla = ListaTuplas.get(elements)
-        print(seleccionTupla)
-        
-        # Extrae los elementos bajo el formato que se espera: "(elemento_a, elemento_b)"
-        seleccionTupla = seleccionTupla.strip('()').split(', ')
-        
-        elemento_a = seleccionTupla[0]
-        elemento_b = seleccionTupla[1]
-        
-        ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
-        
-        print(f"Las tuplas del conjunto A y B son: {elemento_a}, {elemento_b}")
-
-    # Borramos los elementos de la lista previa
-    indices_a_eliminar = list(ListaTuplas.curselection())
-    for elements in reversed(indices_a_eliminar):
-        ListaTuplas.delete(elements)
-    A cuanto el kilo de sus?
-"""
-
 def EnviarTodos(ListaTuplas, ListaSeleccion_f):
     # Obtener cuantos elementos hay
     total_items = ListaTuplas.size()
@@ -63,10 +39,6 @@ def EnviarTodos(ListaTuplas, ListaSeleccion_f):
 
     # Borrar de la lista anterior
     ListaTuplas.delete(0, 'end')
-
-
-
-
 
 #INSERION ELEMENTOS A LISTA
 def relacionesLista(entry_a, entry_b, ListaTuplas):
@@ -131,8 +103,6 @@ def relaciones():
     scrolltuplas.config(command=ListaTuplas.yview)
     scrolltuplas.place(relx=0.44, rely=0.5, relheight=0.65, anchor="center")
 
-
-
     #Listbox relaciones
     ListaSeleccion_f = Listbox(frame2, width=40, height=18, selectmode="multiple")
     ListaSeleccion_f.place(relx=0.735, rely=0.5, relwidth=0.40, relheight=0.65, anchor="center")
@@ -141,8 +111,6 @@ def relaciones():
     ListaSeleccion_f.config(yscrollcommand=scrollrelaciones.set)
     scrollrelaciones.config(command=ListaTuplas.yview)
     scrollrelaciones.place(relx=0.957, rely=0.5, relheight=0.65, anchor="center")
-
-
 
     #Titulos para cada frame
 
@@ -166,16 +134,11 @@ def relaciones():
     #boton para regresar de la relacion a la seleccion
     Boton_regresar_uno = ttk.Button(frame2, text="<", style="Button.TButton", command=lambda: Enviaruno(ListaSeleccion_f,ListaTuplas))
     Boton_regresar_uno.place(relx=0.547, rely=0.85, relwidth=0.17)
-#   Boton_enviar_uno.grid(row=2, column=3, padx=1, pady=0, sticky='ws')
-#   frame2.rowconfigure(2, weight=3)
 
 
     #boton para regresar todo
     Boton_rergresar_todo = ttk.Button(frame2, text="<<", style="Button.TButton", command=lambda: EnviarTodos(ListaSeleccion_f,ListaTuplas))
     Boton_rergresar_todo.place(relx=0.747, rely=0.85, relwidth=0.17)
-
-#    Boton_enviar_uno.grid(row=2, column=4, padx=1, pady=0, sticky='ws')
-#    frame2.rowconfigure(2, weight=3)
 
 
 #ventana principal
@@ -212,9 +175,6 @@ button.grid(row=6, column=0, padx=10, pady=10, sticky="ew")
 
 #segundo frame
 frame2 = ttk.LabelFrame(root, text="Ventana Principal", padding=10)
-
-#frame2.rowconfigure(0, weight=1)
-#frame2.rowconfigure(1, weight=5)
 
 frame2.grid(row=0, column=1, padx=20, pady=15, sticky="nsew")
 label2 = ttk.Label(frame2, text="Bienvenido Usuario, seleccione una opcion para comenzar")
