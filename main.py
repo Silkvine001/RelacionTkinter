@@ -1,4 +1,4 @@
-# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long. invalid-name
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long, invalid-name
 import tkinter
 from tkinter import *
 from tkinter import ttk
