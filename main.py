@@ -180,26 +180,27 @@ def relaciones():
     titulo_tuplas_AXB.place(relx=0.725, rely=0.15, relheight=0.05, anchor="center")
 
     #boton para enviar a la relacion
-    Boton_enviar_uno = ttk.Button(frame2, text=">", style="Accent.TButton", command=lambda: Enviaruno(ListaTuplas,ListaSeleccion_f))
-    Boton_enviar_uno.grid(row=2, column=1, padx=1, pady=0, sticky='es')
-    frame2.rowconfigure(2, weight=3)
+    Boton_enviar_uno = ttk.Button(frame2, text=">", style="Button.TButton", command=lambda: Enviaruno(ListaTuplas,ListaSeleccion_f))
+    Boton_enviar_uno.place(relx=0.027, rely=0.85, relwidth=0.17)
 
     #boton para enviar todo
-    Boton_enviar_uno = ttk.Button(frame2, text=">>", style="Accent.TButton", command=lambda: EnviarTodos(ListaTuplas,ListaSeleccion_f))
-    Boton_enviar_uno.grid(row=2, column=2, padx=1, pady=0, sticky='es')
-    frame2.rowconfigure(2, weight=3)
+    Boton_enviar_todo = ttk.Button(frame2, text=">>", style="Button.TButton", command=lambda: EnviarTodos(ListaTuplas,ListaSeleccion_f))
+    Boton_enviar_todo.place(relx=0.227, rely=0.85, relwidth=0.17)
 
 
     #boton para regresar de la relacion a la seleccion
-    Boton_enviar_uno = ttk.Button(frame2, text="<", style="Accent.TButton", command=lambda: Regresaruno(ListaSeleccion_f,ListaTuplas))
-    Boton_enviar_uno.grid(row=2, column=3, padx=1, pady=0, sticky='ws')
-    frame2.rowconfigure(2, weight=3)
+    Boton_regresar_uno = ttk.Button(frame2, text="<", style="Button.TButton", command=lambda: Regresaruno(ListaSeleccion_f,ListaTuplas))
+    Boton_regresar_uno.place(relx=0.547, rely=0.85, relwidth=0.17)
+#    Boton_enviar_uno.grid(row=2, column=3, padx=1, pady=0, sticky='ws')
+#   frame2.rowconfigure(2, weight=3)
 
 
     #boton para regresar todo
-    Boton_enviar_uno = ttk.Button(frame2, text="<<", style="Accent.TButton", command=lambda: RegresarTodos(ListaSeleccion_f,ListaTuplas))
-    Boton_enviar_uno.grid(row=2, column=4, padx=1, pady=0, sticky='ws')
-    frame2.rowconfigure(2, weight=3)
+    Boton_rergresar_todo = ttk.Button(frame2, text="<<", style="Button.TButton", command=lambda: RegresarTodos(ListaSeleccion_f,ListaTuplas))
+    Boton_rergresar_todo.place(relx=0.747, rely=0.85, relwidth=0.17)
+
+#    Boton_enviar_uno.grid(row=2, column=4, padx=1, pady=0, sticky='ws')
+#    frame2.rowconfigure(2, weight=3)
 
 
 #ventana principal
@@ -218,9 +219,9 @@ frame1.grid(row=0, column=0, padx=20, pady=15, sticky="nsew")
 
 #boton de crear relacion y propiedades, separados del resto
 button = ttk.Button(frame1, text="Crear Relacion", style="Accent.TButton", command=relaciones)
-button.grid(row=1, column=0, padx=10, pady=(35, 10), sticky="ew")
+button.grid(row=1, column=0, padx=10, pady=(85, 10), sticky="ew")
 button = ttk.Button(frame1, text="Propiedades", style="Button.TButton", command=click_boton)
-button.grid(row=2, column=0, padx=10, pady=(10, 120), sticky="ew")
+button.grid(row=2, column=0, padx=10, pady=(10, 180), sticky="ew")
 
 #label de texto para los otros botones
 rep_lab = ttk.Label(frame1, text="Representaciones", anchor="center")
