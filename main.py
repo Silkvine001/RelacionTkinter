@@ -37,14 +37,21 @@ def Enviaruno(ListaTuplas, ListaSeleccion_f):
 def relacionesLista(entry_a, entry_b, ListaTuplas):
     valor_a = entry_a.get()
     valor_b = entry_b.get()
-    conjunto_a = valor_a.split(",")
-    conjunto_b = valor_b.split(",")
-    print("el valor de a es", valor_a)
-    print("el valor de b es", valor_b)
+    if not valor_a:
+        popup = Toplevel(frame2)
+        popup.geometry("200x100")
+        popup.title("")
+        popupvacio = ttk.Label(popup, text="No ha ingresado ningun valor")
+        popupvacio.pack()
+    else:
+        conjunto_a = valor_a.split(",")
+        conjunto_b = valor_b.split(",")
+        print("el valor de a es", valor_a)
+        print("el valor de b es", valor_b)
 
-    print("el conjunto a es:", conjunto_a)
-    print("el conjunto b es:", conjunto_b)
-    ListaTuplas.delete(0, tkinter.END)
+        print("el conjunto a es:", conjunto_a)
+        print("el conjunto b es:", conjunto_b)
+        ListaTuplas.delete(0, tkinter.END)
 
     #Rellenado de la listbox
     ListaTuplasLista = []
