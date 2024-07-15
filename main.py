@@ -140,7 +140,9 @@ def relaciones():
     Boton_rergresar_todo = ttk.Button(frame2, text="<<", style="Button.TButton", command=lambda: EnviarTodos(ListaSeleccion_f,ListaTuplas))
     Boton_rergresar_todo.place(relx=0.747, rely=0.85, relwidth=0.17)
 
-
+    #Boton para generar el arreglo y la matriz
+    Boton_confirmar = ttk.Button(frame2, text="\u2713", style="Accent.TButton", command=lambda: GenerarArreglo(ListaSeleccion))
+    Boton_confirmar.place(relx=0.425, rely=0.85, relwidth=0.1)
 #ventana principal
 root = Tk()
 root.title("Hecho por: Jonathan Salazar")
