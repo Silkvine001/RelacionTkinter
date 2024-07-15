@@ -11,13 +11,34 @@ conjunto_b = 0
 ListaSeleccion = 0
 RelacionR = 0
 
-def PropiedadesRel(RelacionR, valor_a, valor_b):
+def PropiedadesRel(RelacionR, Lista_a, Lista_b):
     for widget in frame2.winfo_children():
         widget.destroy()
     print("widgets eliminados \u2713")
     print(RelacionR)
-    print(valor_a)
-    print(valor_b)
+    print(Lista_a)
+    print(type(Lista_a))
+    print(Lista_b)
+    print(type(Lista_b))
+
+    # Crea la matriz binaria vacía
+    matriz_binaria_R = []
+    matriz_binaria_R = [[0 for i in range(len(Lista_b))] for j in range(len(Lista_a))]
+
+    # Completa la matriz binaria
+    for i, elemento_a in enumerate(Lista_a):
+        for j, elemento_b in enumerate(Lista_b):
+            if (elemento_a, elemento_b) in RelacionR:
+                matriz_binaria_R[i][j] = 1
+            else:
+                matriz_binaria_R[i][j] = 0
+
+    # Imprime la matriz binaria
+    print(f"La matriz binaria de la relación R es:")
+
+    for i in range(len(Lista_b)):
+        for j in range(len(Lista_a)):
+            print(matriz_binaria_R[i][j])
 
 
 def GenerarArreglo(ListaSeleccion_f, titulo_relaciones):
@@ -60,8 +81,10 @@ def EnviarTodos(ListaTuplas, ListaSeleccion_f):
 
 #INSERION ELEMENTOS A LISTA
 def relacionesLista(entry_a, entry_b, ListaTuplas):
-    global valor_a
-    global valor_b
+    global Lista_a
+    global Lista_b
+    Lista_a = entry_a.get().split(",")
+    Lista_b = entry_b.get().split(",")
     valor_a = entry_a.get()
     valor_b = entry_b.get()
     if not valor_a or not valor_b:
@@ -198,7 +221,7 @@ frame1.grid(row=0, column=0, padx=20, pady=15, sticky="nsew")
 #boton de crear relacion y propiedades, separados del resto
 button = ttk.Button(frame1, text="Crear Relacion", style="Accent.TButton", command=relaciones)
 button.grid(row=1, column=0, padx=10, pady=(85, 10), sticky="ew")
-button = ttk.Button(frame1, text="Propiedades", style="Button.TButton", command=lambda: PropiedadesRel(RelacionR, valor_a, valor_b))
+button = ttk.Button(frame1, text="Propiedades", style="Button.TButton", command=lambda: PropiedadesRel(RelacionR, Lista_a, Lista_b))
 button.grid(row=2, column=0, padx=10, pady=(10, 180), sticky="ew")
 
 #label de texto para los otros botones
