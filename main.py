@@ -152,6 +152,7 @@ def relaciones():
     ListaTuplas.place(relx=0.25, rely=0.5, relwidth=0.40, relheight=0.65, anchor="center")
     #Scrollbar Tuplas
     scrolltuplas = ttk.Scrollbar(frame2, orient="vertical")
+    ListaTuplas.config(yscrollcommand=scrolltuplas.set)
     scrolltuplas.config(command=ListaTuplas.yview)
     scrolltuplas.place(relx=0.47, rely=0.5, relheight=0.65, anchor="center")
 
