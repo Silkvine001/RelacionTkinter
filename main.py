@@ -10,12 +10,13 @@ conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
 RelacionR = 0
-def GenerarArreglo(ListaSeleccion_f):
+def GenerarArreglo(ListaSeleccion_f, titulo_relaciones):
     RelacionR = ListaSeleccion_f.get(0, "end")
-    for elemento in RelacionR:
-        print(elemento)
+    #for elemento in len(ListaSeleccion_f.get(0, "end")):
+    titulo_relaciones.config(text = "R: "+str(RelacionR))
+        
 
-    LabelRelacion = ttk.Label(frame2, text="R = ",RelacionR)
+    LabelRelacion = ttk.Label(frame2, text="R = "+str(RelacionR))
     print("hola mundo")
 def Enviaruno(ListaTuplas, ListaSeleccion_f):
     for i in range(len(ListaTuplas.curselection())):
@@ -159,8 +160,14 @@ def relaciones():
     Boton_rergresar_todo.place(relx=0.747, rely=0.85, relwidth=0.17)
 
     #Boton para generar el arreglo y la matriz
-    Boton_confirmar = ttk.Button(frame2, text="\u2713", style="Accent.TButton", command=lambda: GenerarArreglo(ListaSeleccion_f))
+    Boton_confirmar = ttk.Button(frame2, text="\u2713", style="Accent.TButton", command=lambda: GenerarArreglo(ListaSeleccion_f,titulo_relaciones))
     Boton_confirmar.place(relx=0.425, rely=0.85, relwidth=0.1)
+
+    #Label para poner las relaciones abajo de los botones
+    #label relaciones
+    titulo_relaciones = tkinter.Label(frame2, text="Realciones", fg="white")
+    titulo_relaciones.place(relx=0.475, rely=0.95, relheight=0.05, anchor="center")
+
 #ventana principal
 root = Tk()
 root.title("Hecho por: Jonathan Salazar")
