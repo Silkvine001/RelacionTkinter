@@ -61,10 +61,11 @@ def relacionesLista(entry_a, entry_b, ListaTuplas):
     valor_b = entry_b.get()
     if not valor_a:
         popup = Toplevel(frame2)
-        popup.geometry("200x100")
-        popup.title("")
+        popup.geometry("250x120")
+        popup.title("ERROR!")
+        popup.grab_set()
         popupvacio = ttk.Label(popup, text="No ha ingresado ningun valor")
-        popupvacio.pack()
+        popupvacio.place(x=35, rely=0.35)
     else:
         conjunto_a = valor_a.split(",")
         conjunto_b = valor_b.split(",")
