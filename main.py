@@ -57,29 +57,33 @@ def GenerarArreglo(ListaSeleccion_f, titulo_relaciones):
     LabelRelacion = ttk.Label(frame2, text="R = "+str(RelacionR))
     print("hola mundo")
 def Enviaruno(ListaTuplas, ListaSeleccion_f):
+    temp = list(ListaSeleccion_f.get(0, "end"))
     for i in range(len(ListaTuplas.curselection())):
-        seleccionTuplas = ListaTuplas.get(ListaTuplas.curselection()[i])
-        ListaSeleccion_f.insert("end", seleccionTuplas)
+        temp.append(ListaTuplas.get(ListaTuplas.curselection()[i]))
+    temp.sort()
+    ListaSeleccion_f.delete(0, "end")
+    for i in range(len(temp)):
+
+        ListaSeleccion_f.insert("end", temp[i])
+
 
     # Borramos los elementos de la lista previa
     for elements in reversed(ListaTuplas.curselection()):
         ListaTuplas.delete(elements)
 
 def EnviarTodos(ListaTuplas, ListaSeleccion_f):
-    # Obtener cuantos elementos hay
-    total_items = ListaTuplas.size()
+    if ListaSeleccion_f.size() == 0:
+        for i in range(ListaTuplas.size()):
+            ListaSeleccion_f.insert("end", ListaTuplas.get(i))
+    else:
 
-    for i in range(total_items):
-        seleccionTupla = ListaTuplas.get(i)
-        print(seleccionTupla)
-
-        # Extrae los elementos bajo el formato que se espera: "(elemento_a, elemento_b)"
-        seleccionTupla = seleccionTupla.strip('()').split(', ')
-        
-        elemento_a = seleccionTupla[0]
-        elemento_b = seleccionTupla[1]
-
-        ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
+        temp = list(ListaSeleccion_f.get(0, "end"))
+        for i in range(ListaTuplas.size()):
+            temp.append(ListaTuplas.get(i))
+        temp.sort()
+        ListaSeleccion_f.delete(0, "end")
+        for i in range(len(temp)):
+            ListaSeleccion_f.insert("end", temp[i])
 
     # Borrar de la lista anterior
     ListaTuplas.delete(0, 'end')
