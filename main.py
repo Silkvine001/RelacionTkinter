@@ -10,7 +10,14 @@ conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
 
+def Enviaruno(ListaTuplas, ListaSeleccion_f):
+    for i in range(len(ListaTuplas.curselection())):
+        seleccionTuplas = ListaTuplas.get(i)
+        ListaSeleccion_f.insert("end", seleccionTuplas)
+        ListaTuplas.delete(i)
 
+
+"""
 def Enviaruno(ListaTuplas, ListaSeleccion_f):
     for elements in ListaTuplas.curselection():
         seleccionTupla = ListaTuplas.get(elements)
@@ -30,7 +37,7 @@ def Enviaruno(ListaTuplas, ListaSeleccion_f):
     indices_a_eliminar = list(ListaTuplas.curselection())
     for elements in reversed(indices_a_eliminar):
         ListaTuplas.delete(elements)
-
+"""
 
 def EnviarTodos(ListaTuplas, ListaSeleccion_f):
     # Obtener cuantos elementos hay
