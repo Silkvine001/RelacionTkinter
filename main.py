@@ -9,6 +9,7 @@ entry_b = 0
 conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
+
 def Enviaruno(ListaTuplas, ListaSeleccion_f):
 
     for elements in ListaTuplas.curselection():
@@ -31,7 +32,28 @@ def Enviaruno(ListaTuplas, ListaSeleccion_f):
     for elements in reversed(indices_a_eliminar):
         ListaTuplas.delete(elements)
 
-    
+def Regresaruno(ListaTuplas, ListaSeleccion_f):
+
+    for elements in ListaTuplas.curselection():
+        seleccionTupla = ListaTuplas.get(elements)
+        print(seleccionTupla)
+        #Insertamos en la otra lista
+        ListaTuplasLista = []
+        for elemento_a in seleccionTupla[1]:
+            for elemento_b in seleccionTupla[4]:
+                ListaTuplasLista.append((elemento_a, elemento_b))
+                ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
+            print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
+            
+    #Eliminamos los elementos de la lista anterior
+
+    #Ponemos los indices en otra lista
+    indices_a_eliminar = list(ListaTuplas.curselection())
+
+    #Elimnamos los elementos que coinciden
+    for elements in reversed(indices_a_eliminar):
+        ListaTuplas.delete(elements)
+
 
 
 def relacionesLista(entry_a, entry_b, ListaTuplas):
@@ -99,7 +121,7 @@ def relaciones():
     ListaTuplas.place(relx=0.25, rely=0.5, relwidth=0.45, relheight=0.65, anchor="center")
 
     #Listbox relaciones
-    ListaSeleccion_f = Listbox(frame2, width=40, height=18)
+    ListaSeleccion_f = Listbox(frame2, width=40, height=18, selectmode="multiple")
     ListaSeleccion_f.place(relx=0.75, rely=0.5, relwidth=0.45, relheight=0.65, anchor="center")
 
     #boton para enviar a la relacion
@@ -107,6 +129,10 @@ def relaciones():
     Boton_enviar_uno.grid(row=1, column=1, padx=10, pady=10, sticky='ews')
     frame2.rowconfigure(1, weight=3)
 
+    #boton para regresar de la relacion a la seleccion
+    Boton_enviar_uno = ttk.Button(frame2, text="<", style="Accent.TButton", command=lambda: Regresaruno(ListaSeleccion_f,ListaTuplas))
+    Boton_enviar_uno.grid(row=1, column=3, padx=10, pady=10, sticky='ews')
+    frame2.rowconfigure(1, weight=3)
 
 
 #ventana principal
