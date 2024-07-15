@@ -147,9 +147,15 @@ def relaciones():
     boton_subir = ttk.Button(frame2, text="Enviar", style="Accent.TButton", command=lambda: relacionesLista(entry_a, entry_b, ListaTuplas))
     boton_subir.grid(row=0, column=4, padx=(10, 0), pady=(15, 0))
 
-    #Textbox seleccion
+    #Listbox Tuplas
     ListaTuplas = Listbox(frame2, selectmode="multiple")
-    ListaTuplas.place(relx=0.25, rely=0.5, relwidth=0.45, relheight=0.65, anchor="center")
+    ListaTuplas.place(relx=0.25, rely=0.5, relwidth=0.40, relheight=0.65, anchor="center")
+    #Scrollbar Tuplas
+    scrolltuplas = ttk.Scrollbar(frame2, orient="vertical")
+    scrolltuplas.config(command=ListaTuplas.yview)
+    scrolltuplas.place(relx=0.47, rely=0.5, relheight=0.65, anchor="center")
+
+
 
     #Listbox relaciones
     ListaSeleccion_f = Listbox(frame2, width=40, height=18, selectmode="multiple")
