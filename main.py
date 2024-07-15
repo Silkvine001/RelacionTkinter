@@ -40,6 +40,7 @@ def Enviaruno(ListaTuplas, ListaSeleccion_f):
     indices_a_eliminar = list(ListaTuplas.curselection())
     for elements in reversed(indices_a_eliminar):
         ListaTuplas.delete(elements)
+    A cuanto el kilo de sus?
 """
 
 def EnviarTodos(ListaTuplas, ListaSeleccion_f):
