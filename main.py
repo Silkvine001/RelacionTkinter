@@ -9,7 +9,14 @@ entry_b = 0
 conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
+RelacionR = 0
+def GenerarArreglo(ListaSeleccion_f):
+    RelacionR = ListaSeleccion_f.get(0, "end")
+    for elemento in RelacionR:
+        print(elemento)
 
+    LabelRelacion = ttk.Label(frame2, text="R = ",RelacionR)
+    print("hola mundo")
 def Enviaruno(ListaTuplas, ListaSeleccion_f):
     for i in range(len(ListaTuplas.curselection())):
         seleccionTuplas = ListaTuplas.get(ListaTuplas.curselection()[i])
@@ -44,22 +51,33 @@ def EnviarTodos(ListaTuplas, ListaSeleccion_f):
 def relacionesLista(entry_a, entry_b, ListaTuplas):
     valor_a = entry_a.get()
     valor_b = entry_b.get()
-    conjunto_a = valor_a.split(",")
-    conjunto_b = valor_b.split(",")
-    print("el valor de a es", valor_a)
-    print("el valor de b es", valor_b)
+    if not valor_a or not valor_b:
+        Errorvacio = Toplevel()
+        Errorvacio.geometry("380x160")
+        Errorvacio.resizable(False, False)
+        Errorvacio.transient(root)
+        Errorvacio.grab_set_global()
+        Errorvacio.focus_get()
+        MsjError = ttk.Label(Errorvacio, text="El campo conjunto A o conjunto B estan vacios")
+        MsjError.place(relx=0.5, rely=0.5, anchor="s")
+        print("no pusiste nada pndj")
+    else:
+        conjunto_a = valor_a.split(",")
+        conjunto_b = valor_b.split(",")
+        print("el valor de a es", valor_a)
+        print("el valor de b es", valor_b)
 
-    print("el conjunto a es:", conjunto_a)
-    print("el conjunto b es:", conjunto_b)
-    ListaTuplas.delete(0, tkinter.END)
+        print("el conjunto a es:", conjunto_a)
+        print("el conjunto b es:", conjunto_b)
+        ListaTuplas.delete(0, tkinter.END)
 
-    #Rellenado de la listbox
-    ListaTuplasLista = []
-    for elemento_a in conjunto_a:
-        for elemento_b in conjunto_b:
-            ListaTuplasLista.append((elemento_a, elemento_b))
-            ListaTuplas.insert("end", f"({elemento_a}, {elemento_b})")
-    print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
+        #Rellenado de la listbox
+        ListaTuplasLista = []
+        for elemento_a in conjunto_a:
+            for elemento_b in conjunto_b:
+                ListaTuplasLista.append((elemento_a, elemento_b))
+                ListaTuplas.insert("end", f"({elemento_a}, {elemento_b})")
+        print(f"Las tuplas del conjunto A y B son:", ListaTuplasLista)
 
 
 def click_boton():
@@ -141,13 +159,14 @@ def relaciones():
     Boton_rergresar_todo.place(relx=0.747, rely=0.85, relwidth=0.17)
 
     #Boton para generar el arreglo y la matriz
-    Boton_confirmar = ttk.Button(frame2, text="\u2713", style="Accent.TButton", command=lambda: GenerarArreglo(ListaSeleccion))
+    Boton_confirmar = ttk.Button(frame2, text="\u2713", style="Accent.TButton", command=lambda: GenerarArreglo(ListaSeleccion_f))
     Boton_confirmar.place(relx=0.425, rely=0.85, relwidth=0.1)
 #ventana principal
 root = Tk()
 root.title("Hecho por: Jonathan Salazar")
 root.minsize(820, 650)
 root.maxsize(1280, 720)
+root.resizable(False, False)
 
 root.rowconfigure(0, weight=1)
 root.columnconfigure(1, weight=1)
