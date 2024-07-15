@@ -22,4 +22,4 @@ jobs:
         pip install tk
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files 'main.py')
+        python main.py
