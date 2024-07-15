@@ -16,8 +16,8 @@ def Enviaruno(ListaTuplas, ListaSeleccion_f):
         ListaSeleccion_f.insert("end", seleccionTuplas)
 
     # Borramos los elementos de la lista previa
-    indices_a_eliminar = list(ListaTuplas.curselection())
-    for elements in reversed(indices_a_eliminar):
+    #indices_a_eliminar = list(ListaTuplas.curselection())
+    for elements in reversed(ListaTuplas.curselection()):
         ListaTuplas.delete(elements)
 
 
