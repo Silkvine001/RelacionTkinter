@@ -1,3 +1,4 @@
+# pylint: disable=locally-disabled, multiple-statements, fixme, line-too-long
 import tkinter
 from tkinter import *
 from tkinter import ttk
