@@ -10,11 +10,23 @@ conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
 RelacionR = 0
+
+def PropiedadesRel(RelacionR, valor_a, valor_b):
+    for widget in frame2.winfo_children():
+        widget.destroy()
+    print("widgets eliminados \u2713")
+    print(RelacionR)
+    print(valor_a)
+    print(valor_b)
+
+
 def GenerarArreglo(ListaSeleccion_f, titulo_relaciones):
+    global RelacionR
     RelacionR = ListaSeleccion_f.get(0, "end")
     #for elemento in len(ListaSeleccion_f.get(0, "end")):
-    titulo_relaciones.config(text = "R: "+str(RelacionR))
-        
+    titulo_relaciones.config(text="R = "+str(RelacionR))
+    print(RelacionR)
+
 
     LabelRelacion = ttk.Label(frame2, text="R = "+str(RelacionR))
     print("hola mundo")
@@ -42,14 +54,14 @@ def EnviarTodos(ListaTuplas, ListaSeleccion_f):
         elemento_b = seleccionTupla[1]
 
         ListaSeleccion_f.insert("end", f"({elemento_a}, {elemento_b})")
-        
-        print(f"Las tuplas del conjunto A y B son: {elemento_a}, {elemento_b}")
 
     # Borrar de la lista anterior
     ListaTuplas.delete(0, 'end')
 
 #INSERION ELEMENTOS A LISTA
 def relacionesLista(entry_a, entry_b, ListaTuplas):
+    global valor_a
+    global valor_b
     valor_a = entry_a.get()
     valor_b = entry_b.get()
     if not valor_a or not valor_b:
@@ -165,7 +177,7 @@ def relaciones():
 
     #Label para poner las relaciones abajo de los botones
     #label relaciones
-    titulo_relaciones = tkinter.Label(frame2, text="Realciones", fg="white")
+    titulo_relaciones = tkinter.Label(frame2, text="R =", fg="white")
     titulo_relaciones.place(relx=0.475, rely=0.95, relheight=0.05, anchor="center")
 
 #ventana principal
@@ -186,7 +198,7 @@ frame1.grid(row=0, column=0, padx=20, pady=15, sticky="nsew")
 #boton de crear relacion y propiedades, separados del resto
 button = ttk.Button(frame1, text="Crear Relacion", style="Accent.TButton", command=relaciones)
 button.grid(row=1, column=0, padx=10, pady=(85, 10), sticky="ew")
-button = ttk.Button(frame1, text="Propiedades", style="Button.TButton", command=click_boton)
+button = ttk.Button(frame1, text="Propiedades", style="Button.TButton", command=lambda: PropiedadesRel(RelacionR, valor_a, valor_b))
 button.grid(row=2, column=0, padx=10, pady=(10, 180), sticky="ew")
 
 #label de texto para los otros botones
