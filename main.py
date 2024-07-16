@@ -16,6 +16,7 @@ def PropiedadesRel(RelacionR, Lista_a, Lista_b):
         widget.destroy()
     print("widgets eliminados \u2713")
     print(RelacionR)
+    print(type(RelacionR))
     print(Lista_a)
     print(type(Lista_a))
     print(Lista_b)
@@ -39,6 +40,96 @@ def PropiedadesRel(RelacionR, Lista_a, Lista_b):
     for i in range(len(Lista_b)):
         for j in range(len(Lista_a)):
             print(matriz_binaria_R[i][j])
+
+    print("Propiedades de la matriz:")
+
+    R_es_cuadrada = True
+    reflexividad_R = True
+    irreflexivilidad_R = True
+    transitividad_R = True
+    simetria_R = True
+    antisimetria_R = True
+
+    if len(matriz_binaria_R) == len(matriz_binaria_R[0]):
+        reflexividad_R = True
+        R_es_cuadrada = True
+    else:
+        reflexividad_R = False
+        R_es_cuadrada = False
+
+    if Lista_a == Lista_b:
+        if R_es_cuadrada:
+            for i in range(len(matriz_binaria_R)):
+                if matriz_binaria_R[i][i] != 1:
+                    reflexividad_R = False
+                    break
+    else:
+        reflexividad_R = False
+
+    print(f"Reflexividad: {reflexividad_R}")
+
+    if Lista_a == Lista_b:
+        if R_es_cuadrada:
+            for i in range(len(matriz_binaria_R)):
+                if matriz_binaria_R[i][i] != 0:
+                    irreflexivilidad_R = False
+                    break
+    else:
+        irreflexivilidad_R = False
+
+    print(f"Irreflexividad: {irreflexivilidad_R}")
+
+    if Lista_a == Lista_b:
+        if R_es_cuadrada:
+            index = len(matriz_binaria_R) - 1
+            pos = True
+            if matriz_binaria_R[1][1] == matriz_binaria_R[0][0]:
+                pos = False
+
+            if matriz_binaria_R[0][0] == matriz_binaria_R[index][index] and pos == False:
+                transitividad_R = True
+            else:
+                transitividad_R = False
+
+    else:
+        transitividad_R = False
+
+    print(f"Transitividad: {transitividad_R}")
+
+    if Lista_a == Lista_b:
+        if R_es_cuadrada:
+
+            rev = list(reversed(matriz_binaria_R))
+            for i in range(len(rev)):
+                rev[i] = list(reversed(rev[i]))
+
+            if matriz_binaria_R != rev:
+                simetria_R = False
+
+
+    else:
+        simetria_R = False
+
+    print(f"Simetria: {simetria_R}")
+    print(f"Asimetria: {not simetria_R}")
+
+    if Lista_a == Lista_b:
+        if R_es_cuadrada:
+            last = matriz_binaria_R[0][0]
+            for i in range(len(matriz_binaria_R)):
+
+                if matriz_binaria_R[i][i] != last and last != 0:
+                    antisimetria_R = False
+                    break
+                last = matriz_binaria_R[i][i]
+    else:
+        antisimetria_R = False
+
+    print(f"Antisimetria: {antisimetria_R}""\n")
+    return matriz_binaria_R
+
+
+print("\n")
 
 
 def GenerarArreglo(ListaSeleccion_f, titulo_relaciones):

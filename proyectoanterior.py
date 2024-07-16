@@ -58,6 +58,7 @@ def crear_conjunto(conjunto):
 
     print("Se han añadido todas las tuplas seleccionadas""\n")
     print(f"La relacion {map_r[conjunto].upper()} esta conformada por:""\n", relacion_r)
+    print(type(relacion_r))
 
     m_binaria = propiedades(conjunto_a, conjunto_b, relacion_r, conjunto)
     return m_binaria
