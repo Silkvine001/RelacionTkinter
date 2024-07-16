@@ -10,127 +10,196 @@ conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
 RelacionR = 0
+Lista_a = 0
+Lista_b = 0
+matriz_binaria_R = []
+def RepresentarMatriz(Lista_a, Lista_b):
+    if Lista_a == 0 and Lista_b == 0:
+        ErrorNR = Toplevel()
+        ErrorNR.geometry("380x160")
+        ErrorNR.resizable(False, False)
+        ErrorNR.transient(root)
+        ErrorNR.grab_set_global()
+        ErrorNR.focus_get()
+        MsjErrorNR = ttk.Label(ErrorNR, text="Aun no haz ingresado ninguna Relacion")
+        MsjErrorNR.place(relx=0.5, rely=0.5, anchor="s")
+    else:
+        for widget in frame2.winfo_children():
+            widget.destroy()
+
+        MatrizPlantilla = ttk.Label(frame2, text=MatrizString(Lista_a, Lista_b, matriz_binaria_R))
+        MatrizPlantilla.place(relx=0.5, rely=0.5, anchor="center")
 
 
 def PropiedadesRel(RelacionR, Lista_a, Lista_b):
-    for widget in frame2.winfo_children():
-        widget.destroy()
-    print("widgets eliminados \u2713")
-    print(RelacionR)
-    print(type(RelacionR))
-    print(Lista_a)
-    print(type(Lista_a))
-    print(Lista_b)
-    print(type(Lista_b))
 
-    # Crea la matriz binaria vacía
-    matriz_binaria_R = []
-    matriz_binaria_R = [[0 for i in range(len(Lista_b))] for j in range(len(Lista_a))]
+    if Lista_a == 0 and Lista_b == 0:
+        ErrorNR = Toplevel()
+        ErrorNR.geometry("380x160")
+        ErrorNR.resizable(False, False)
+        ErrorNR.transient(root)
+        ErrorNR.grab_set_global()
+        ErrorNR.focus_get()
+        MsjErrorNR = ttk.Label(ErrorNR, text="Aun no haz ingresado ninguna Relacion")
+        MsjErrorNR.place(relx=0.5, rely=0.5, anchor="s")
+    else:
+        for widget in frame2.winfo_children():
+            widget.destroy()
 
-    # Completa la matriz binaria
-    for i, elemento_a in enumerate(Lista_a):
-        for j, elemento_b in enumerate(Lista_b):
-            if (elemento_a, elemento_b) in RelacionR:
-                matriz_binaria_R[i][j] = 1
-            else:
-                matriz_binaria_R[i][j] = 0
+        reflexividad_R_Label = ttk.Label(frame2, text="Reflexividad: False", foreground="gray", font=("Ariel", 25))
+        irreflexivilidad_R_Label = ttk.Label(frame2, text="Irreflexividad: False", foreground="gray", font=("Ariel", 25))
+        transitividad_R_Label = ttk.Label(frame2, text="Transitividad: False", foreground="gray", font=("Ariel", 25))
+        simetria_R_Label = ttk.Label(frame2, text="Simetria: False", foreground="gray", font=("Ariel", 25))
+        asimetria_R_Label = ttk.Label(frame2, text="Asimetria: False", foreground="gray", font=("Ariel", 25))
+        antisimetria_R_Label = ttk.Label(frame2, text="Antisimetria: False", foreground="gray", font=("Ariel", 25))
+        reflexividad_R_Label.place(relx=0.5, rely=0.7, anchor="center")
+        irreflexivilidad_R_Label.place(relx=0.5, rely=0.6, anchor="center")
+        transitividad_R_Label.place(relx=0.5, rely=0.5, anchor="center")
+        simetria_R_Label.place(relx=0.5, rely=0.4, anchor="center")
+        antisimetria_R_Label.place(relx=0.5, rely=0.3, anchor="center")
+        asimetria_R_Label.place(relx=0.5, rely=0.2, anchor="center")
 
-    # Imprime la matriz binaria
-    print(f"La matriz binaria de la relación R es:")
 
-    for i in range(len(Lista_b)):
-        for j in range(len(Lista_a)):
-            print(matriz_binaria_R[i][j])
+        print("widgets eliminados \u2713")
+        print(RelacionR)
+        print(type(RelacionR))
+        print(Lista_a)
+        print(type(Lista_a))
+        print(Lista_b)
+        print(type(Lista_b))
 
-    print("Propiedades de la matriz:")
+        # Crea la matriz binaria vacía
+        matriz_binaria_R = []
+        matriz_binaria_R = [[0 for i in range(len(Lista_b))] for j in range(len(Lista_a))]
 
-    R_es_cuadrada = True
-    reflexividad_R = True
-    irreflexivilidad_R = True
-    transitividad_R = True
-    simetria_R = True
-    antisimetria_R = True
+        # Completa la matriz binaria
+        for i, elemento_a in enumerate(Lista_a):
+            for j, elemento_b in enumerate(Lista_b):
+                if (elemento_a, elemento_b) in RelacionR:
+                    matriz_binaria_R[i][j] = 1
+                else:
+                    matriz_binaria_R[i][j] = 0
 
-    if len(matriz_binaria_R) == len(matriz_binaria_R[0]):
-        reflexividad_R = True
+        # Imprime la matriz binaria
+        print(f"La matriz binaria de la relación R es:")
+
+        for i in range(len(Lista_b)):
+            for j in range(len(Lista_a)):
+                print(matriz_binaria_R[i][j])
+
+        print("Propiedades de la matriz:")
+
         R_es_cuadrada = True
-    else:
-        reflexividad_R = False
-        R_es_cuadrada = False
+        reflexividad_R = True
+        irreflexivilidad_R = True
+        transitividad_R = True
+        simetria_R = True
+        antisimetria_R = True
 
-    if Lista_a == Lista_b:
-        if R_es_cuadrada:
-            for i in range(len(matriz_binaria_R)):
-                if matriz_binaria_R[i][i] != 1:
-                    reflexividad_R = False
-                    break
-    else:
-        reflexividad_R = False
+        if len(matriz_binaria_R) == len(matriz_binaria_R[0]):
+            reflexividad_R = True
+            R_es_cuadrada = True
+        else:
+            reflexividad_R = False
+            R_es_cuadrada = False
 
-    print(f"Reflexividad: {reflexividad_R}")
+        if Lista_a == Lista_b:
+            if R_es_cuadrada:
+                for i in range(len(matriz_binaria_R)):
+                    if matriz_binaria_R[i][i] != 1:
+                        reflexividad_R = False
+                        break
+        else:
+            reflexividad_R = False
 
-    if Lista_a == Lista_b:
-        if R_es_cuadrada:
-            for i in range(len(matriz_binaria_R)):
-                if matriz_binaria_R[i][i] != 0:
-                    irreflexivilidad_R = False
-                    break
-    else:
-        irreflexivilidad_R = False
+        print(f"Reflexividad: {reflexividad_R}")
 
-    print(f"Irreflexividad: {irreflexivilidad_R}")
+        if Lista_a == Lista_b:
+            if R_es_cuadrada:
+                for i in range(len(matriz_binaria_R)):
+                    if matriz_binaria_R[i][i] != 0:
+                        irreflexivilidad_R = False
+                        break
+        else:
+            irreflexivilidad_R = False
 
-    if Lista_a == Lista_b:
-        if R_es_cuadrada:
-            index = len(matriz_binaria_R) - 1
-            pos = True
-            if matriz_binaria_R[1][1] == matriz_binaria_R[0][0]:
-                pos = False
+        print(f"Irreflexividad: {irreflexivilidad_R}")
 
-            if matriz_binaria_R[0][0] == matriz_binaria_R[index][index] and pos == False:
-                transitividad_R = True
-            else:
-                transitividad_R = False
+        if Lista_a == Lista_b:
+            if R_es_cuadrada:
+                index = len(matriz_binaria_R) - 1
+                pos = True
+                if matriz_binaria_R[1][1] == matriz_binaria_R[0][0]:
+                    pos = False
 
-    else:
-        transitividad_R = False
+                if matriz_binaria_R[0][0] == matriz_binaria_R[index][index] and pos == False:
+                    transitividad_R = True
+                else:
+                    transitividad_R = False
 
-    print(f"Transitividad: {transitividad_R}")
+        else:
+            transitividad_R = False
 
-    if Lista_a == Lista_b:
-        if R_es_cuadrada:
+        print(f"Transitividad: {transitividad_R}")
 
-            rev = list(reversed(matriz_binaria_R))
-            for i in range(len(rev)):
-                rev[i] = list(reversed(rev[i]))
+        if Lista_a == Lista_b:
+            if R_es_cuadrada:
 
-            if matriz_binaria_R != rev:
-                simetria_R = False
+                rev = list(reversed(matriz_binaria_R))
+                for i in range(len(rev)):
+                    rev[i] = list(reversed(rev[i]))
 
-
-    else:
-        simetria_R = False
-
-    print(f"Simetria: {simetria_R}")
-    print(f"Asimetria: {not simetria_R}")
-
-    if Lista_a == Lista_b:
-        if R_es_cuadrada:
-            last = matriz_binaria_R[0][0]
-            for i in range(len(matriz_binaria_R)):
-
-                if matriz_binaria_R[i][i] != last and last != 0:
-                    antisimetria_R = False
-                    break
-                last = matriz_binaria_R[i][i]
-    else:
-        antisimetria_R = False
-
-    print(f"Antisimetria: {antisimetria_R}""\n")
-    return matriz_binaria_R
+                if matriz_binaria_R != rev:
+                    simetria_R = False
 
 
-print("\n")
+        else:
+            simetria_R = False
+
+        print(f"Simetria: {simetria_R}")
+        print(f"Asimetria: {not simetria_R}")
+
+        if Lista_a == Lista_b:
+            if R_es_cuadrada:
+                last = matriz_binaria_R[0][0]
+                for i in range(len(matriz_binaria_R)):
+
+                    if matriz_binaria_R[i][i] != last and last != 0:
+                        antisimetria_R = False
+                        break
+                    last = matriz_binaria_R[i][i]
+        else:
+            antisimetria_R = False
+
+        print(f"Antisimetria: {antisimetria_R}""\n")
+
+        if reflexividad_R:
+            reflexividad_R_Label.config(text="Reflexividad: True")
+        if irreflexivilidad_R:
+            irreflexivilidad_R_Label.config(text="Irreflexividad: True")
+        if transitividad_R:
+            transitividad_R_Label.config(text="Transitividad: True")
+        if simetria_R:
+            simetria_R_Label.config(text="Simetria: True")
+        if antisimetria_R:
+            antisimetria_R_Label.config(text="Antisimetria: True")
+        if not simetria_R:
+            asimetria_R_Label.config(text="Asimetria: True")
+        return matriz_binaria_R
+
+
+def MatrizString(Lista_a, Lista_b, matriz_binaria_R):
+    # Imprime la matriz binaria con plantilla ajustable
+    print("R", end=" | ")  # imprime el encabezado R separado con un "|"
+    for elemento_b in Lista_b:
+        print(elemento_b, end=" | ")  # imprime los elementos de b como encabezado, usando "|" como separador
+    print()  # pasa a la siguiente linea sin dejar espacios
+
+    for i, fila in enumerate(matriz_binaria_R):
+        print(Lista_a[i], end=" | ")
+        for elemento in fila:
+            print(elemento, end=" | ")
+        print()
 
 
 def GenerarArreglo(ListaSeleccion_f, titulo_relaciones):
@@ -338,7 +407,7 @@ rep_lab = ttk.Label(frame1, text="Representaciones", anchor="center")
 rep_lab.grid(row=3, column=0, padx=10, pady=10)
 
 # el resto de los botones
-button = ttk.Button(frame1, text="Matriz", style="Button.TButton", command=click_boton)
+button = ttk.Button(frame1, text="Matriz", style="Button.TButton", command=lambda: RepresentarMatriz(Lista_a, Lista_b))
 button.grid(row=4, column=0, padx=10, pady=10, sticky="ew")
 button = ttk.Button(frame1, text="Sagital", style="Button.TButton", command=click_boton)
 button.grid(row=5, column=0, padx=10, pady=10, sticky="ew")
