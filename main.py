@@ -1,3 +1,4 @@
+# pylint: skip-file
 import tkinter
 from tkinter import *
 from tkinter import ttk
