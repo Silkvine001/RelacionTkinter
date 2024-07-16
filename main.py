@@ -13,6 +13,7 @@ RelacionR = 0
 Lista_a = 0
 Lista_b = 0
 matriz_binaria_R = []
+
 def RepresentarMatriz(Lista_a, Lista_b):
     if Lista_a == 0 and Lista_b == 0:
         ErrorNR = Toplevel()
@@ -27,6 +28,31 @@ def RepresentarMatriz(Lista_a, Lista_b):
         for widget in frame2.winfo_children():
             widget.destroy()
 
+        #Creamos la matriz binaria antes de enviarla 
+
+        # Crea la matriz binaria vacía
+        matriz_binaria_R = []
+        matriz_binaria_R = [[0 for i in range(len(Lista_b))] for j in range(len(Lista_a))]
+
+        # Completa la matriz binaria
+        for i, elemento_a in enumerate(Lista_a):
+            for j, elemento_b in enumerate(Lista_b):
+                if (elemento_a, elemento_b) in RelacionR:
+                    matriz_binaria_R[i][j] = 1
+                else:
+                    matriz_binaria_R[i][j] = 0
+
+        # Imprime la matriz binaria
+        print(f"La matriz binaria de la relación R es:")
+
+        #print("Test:"+str(matriz_binaria_R))
+
+        for i in range(len(Lista_b)):
+            for j in range(len(Lista_a)):
+                print(matriz_binaria_R[j][i], end=' | ')
+            print()#Salto de linea    
+
+        print()#Salto de linea 
         MatrizPlantilla = ttk.Label(frame2, text=MatrizString(Lista_a, Lista_b, matriz_binaria_R))
         MatrizPlantilla.place(relx=0.5, rely=0.5, anchor="center")
 
@@ -82,6 +108,8 @@ def PropiedadesRel(RelacionR, Lista_a, Lista_b):
 
         # Imprime la matriz binaria
         print(f"La matriz binaria de la relación R es:")
+
+        print("Test:"+str(matriz_binaria_R))
 
         for i in range(len(Lista_b)):
             for j in range(len(Lista_a)):
@@ -189,17 +217,28 @@ def PropiedadesRel(RelacionR, Lista_a, Lista_b):
 
 
 def MatrizString(Lista_a, Lista_b, matriz_binaria_R):
+    # Variable to store the string representation of the matrix
+    salida_matrix = ""
+
     # Imprime la matriz binaria con plantilla ajustable
-    print("R", end=" | ")  # imprime el encabezado R separado con un "|"
+    salida_matrix += "R | "  # imprime el encabezado R separado con un "|"
     for elemento_b in Lista_b:
-        print(elemento_b, end=" | ")  # imprime los elementos de b como encabezado, usando "|" como separador
-    print()  # pasa a la siguiente linea sin dejar espacios
+        salida_matrix += str(elemento_b) + " | "  # imprime los elementos de b como encabezado, usando "|" como separador
+    salida_matrix += "\n"  # pasa a la siguiente linea sin dejar espacios
+
+    #print("la matrix:"+str(matriz_binaria_R))
 
     for i, fila in enumerate(matriz_binaria_R):
-        print(Lista_a[i], end=" | ")
+        salida_matrix += str(Lista_a[i]) + " | "
         for elemento in fila:
-            print(elemento, end=" | ")
-        print()
+            salida_matrix += str(elemento) + " | "
+        salida_matrix += "\n"
+
+    # To see the output
+    return salida_matrix
+
+    
+
 
 
 def GenerarArreglo(ListaSeleccion_f, titulo_relaciones):
