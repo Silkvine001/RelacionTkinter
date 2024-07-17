@@ -449,7 +449,7 @@ def relaciones():
 root = Tk()
 root.title("Hecho por: Jonathan Salazar")
 root.minsize(1280, 720)
-#root.maxsize(1280, 720)
+root.maxsize(1280, 720)
 root.resizable(False, False)
 
 root.rowconfigure(0, weight=1)
