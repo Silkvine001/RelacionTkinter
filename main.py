@@ -14,7 +14,7 @@ Lista_a = 0
 Lista_b = 0
 matriz_binaria_R = []
 
-def RepresentarMatriz(Lista_a, Lista_b):
+def RepresentarMatriz(Lista_a, Lista_b, ListasString_Union, RelacionStringFormat):
     if Lista_a == 0 and Lista_b == 0:
         ErrorNR = Toplevel()
         ErrorNR.geometry("380x160")
@@ -52,13 +52,18 @@ def RepresentarMatriz(Lista_a, Lista_b):
                 print(matriz_binaria_R[j][i], end=' | ')
             print()#Salto de linea    
 
-        print()#Salto de linea 
-        MatrizPlantilla = ttk.Label(frame2, text=MatrizString(Lista_a, Lista_b, matriz_binaria_R))
+        print()#Salto de linea
+        A_B_Label = ttk.Label(frame2, text=ListasString_Union, foreground="white", font=("Ariel", 13, "bold"))
+        RelacionLabel = ttk.Label(frame2, text=RelacionStringFormat, foreground="white", font=("Ariel", 13, "bold"))
+        A_B_Label.place(relx=0.5, rely=0.05, anchor="center")
+        RelacionLabel.place(relx=0.5, rely=0.1, anchor="center")
+        MatrizPlantilla = ttk.Label(frame2, text=MatrizString(Lista_a, Lista_b, matriz_binaria_R), font=("Consolas", 16, "bold"))
         MatrizPlantilla.place(relx=0.5, rely=0.5, anchor="center")
 
 
 def PropiedadesRel(RelacionR, Lista_a, Lista_b):
-
+    global RelacionStringFormat
+    global ListasString_Union
     if Lista_a == 0 and Lista_b == 0:
         ErrorNR = Toplevel()
         ErrorNR.geometry("380x160")
@@ -78,6 +83,17 @@ def PropiedadesRel(RelacionR, Lista_a, Lista_b):
         simetria_R_Label = ttk.Label(frame2, text="Simetria: False", foreground="gray", font=("Ariel", 25))
         asimetria_R_Label = ttk.Label(frame2, text="Asimetria: False", foreground="gray", font=("Ariel", 25))
         antisimetria_R_Label = ttk.Label(frame2, text="Antisimetria: False", foreground="gray", font=("Ariel", 25))
+        ListasString_A = ",".join(Lista_a)
+        ListasString_B = ",".join(Lista_b)
+        RelacionSring = str(RelacionR).strip('[]').replace("'", "")
+        my_string_var = StringVar()
+        RelacionStringFormat = "R = {" + RelacionSring + "}"
+        ListasString_Union = "A = {" + ListasString_A + "}" + " " + " B = {" + ListasString_B + "}"
+        print("test: ", ListasString_Union)
+        A_B_Label = ttk.Label(frame2, text=ListasString_Union, foreground="white", font=("Ariel", 16, "bold"))
+        RelacionLabel = ttk.Label(frame2, text=RelacionStringFormat, foreground="white", font=("Ariel", 16, "bold"))
+        A_B_Label.place(relx=0.5, rely=0.05, anchor="center")
+        RelacionLabel.place(relx=0.5, rely=0.1, anchor="center")
         reflexividad_R_Label.place(relx=0.5, rely=0.7, anchor="center")
         irreflexivilidad_R_Label.place(relx=0.5, rely=0.6, anchor="center")
         transitividad_R_Label.place(relx=0.5, rely=0.5, anchor="center")
@@ -243,6 +259,14 @@ def MatrizString(Lista_a, Lista_b, matriz_binaria_R):
 
 def GenerarArreglo(ListaSeleccion_f, titulo_relaciones):
     global RelacionR
+    global RelacionStringFormat
+    global ListasString_Union
+    ListasString_A = ",".join(Lista_a)
+    ListasString_B = ",".join(Lista_b)
+    RelacionSring = str(RelacionR).strip('[]').replace("'", "")
+    my_string_var = StringVar()
+    RelacionStringFormat = "R = {" + RelacionSring + "}"
+    ListasString_Union = "A = {" + ListasString_A + "}" + " " + " B = {" + ListasString_B + "}"
     RelacionR = list(ListaSeleccion_f.get(0, "end"))
 
     for i in range(len(RelacionR)):
@@ -334,6 +358,8 @@ def click_boton():
 
 # VENTANA RELACIONES
 def relaciones():
+    global RelacionStringFormat
+    global ListasString_Union
     # se remueve el texto de bienvenida
     for widget in frame2.winfo_children():
         widget.destroy()
@@ -422,8 +448,8 @@ def relaciones():
 # ventana principal
 root = Tk()
 root.title("Hecho por: Jonathan Salazar")
-root.minsize(820, 650)
-root.maxsize(1280, 720)
+root.minsize(1280, 720)
+#root.maxsize(1280, 720)
 root.resizable(False, False)
 
 root.rowconfigure(0, weight=1)
@@ -446,7 +472,7 @@ rep_lab = ttk.Label(frame1, text="Representaciones", anchor="center")
 rep_lab.grid(row=3, column=0, padx=10, pady=10)
 
 # el resto de los botones
-button = ttk.Button(frame1, text="Matriz", style="Button.TButton", command=lambda: RepresentarMatriz(Lista_a, Lista_b))
+button = ttk.Button(frame1, text="Matriz", style="Button.TButton", command=lambda: RepresentarMatriz(Lista_a, Lista_b, RelacionStringFormat, ListasString_Union))
 button.grid(row=4, column=0, padx=10, pady=10, sticky="ew")
 button = ttk.Button(frame1, text="Sagital", style="Button.TButton", command=click_boton)
 button.grid(row=5, column=0, padx=10, pady=10, sticky="ew")
