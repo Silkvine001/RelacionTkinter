@@ -1,7 +1,7 @@
 import tkinter
 from tkinter import *
 from tkinter import ttk
-
+import math
 import sv_ttk
 
 entry_a = 0
@@ -10,10 +10,130 @@ conjunto_a = 0
 conjunto_b = 0
 ListaSeleccion = 0
 RelacionR = 0
-Lista_a = 0
-Lista_b = 0
+Lista_a = []
+Lista_b = []
+ListaTuplasLista = []
 matriz_binaria_R = []
-#hola mundo
+W = 820
+H = 650
+scaled = 300
+
+def scale(nodes):
+
+    negated_nodes =  [(x, -y) for x, y in nodes]
+    scaled_nodes = [(x * scaled, y * scaled) for x, y in negated_nodes]
+    centered_nodes = [(x + W / 2, y + H / 2) for x, y in scaled_nodes]
+
+    return centered_nodes
+
+def grafo():
+    for widget in frame2.winfo_children():
+        widget.destroy()
+
+    if len(ListaTuplasLista) == 0:
+
+        label2 = ttk.Label(frame2, text="Primero debe crear conjuntos para ver esta ventana.")
+        label2.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+        return
+
+    canvas = Canvas(frame2, width=W, height=H, bg="#1C1C1C")
+
+    nver = 0
+    points = []
+
+    tuplas = Lista_a
+    for i in range(len(Lista_b)):
+        tuplas.append(Lista_b[i])
+
+    tuplas = list(set(tuplas))
+
+    reldict = {}
+    items = []
+
+    for i in range(len(tuplas)):
+
+        if tuplas[i] in reldict:
+            continue
+        nver = nver + 1
+        reldict.update({tuplas[i]: (0, 0)})
+        items.append(tuplas[i])
+
+    for i in range(nver):
+        ra = 360/nver
+        angle = math.radians(i * ra)
+
+        # Calcular las coordenadas del vértice
+        x = 1  * math.cos(angle)
+        y = 1  * math.sin(angle)
+
+        # Dibujar el vértice (puedes personalizar su apariencia)
+
+        given_nodes = (
+            (x, y),
+            (x, y)
+        )
+        nodes = scale(given_nodes)
+
+        points.append(nodes[0])
+
+    radius = 20
+    for i in range(nver):
+        x, y = points[i]
+
+        if i+1 != len(points):
+            x2, y2 = points[i+1]
+
+        else:
+            x2, y2 = points[0]
+
+        #given_nodes = (
+        #    (x, y),
+        #    (W/2, H/2),
+        #    (x2, y2),
+        #)
+
+        canvas.create_oval(x - radius, y - radius, x + radius, y + radius, outline="white")
+
+
+        #canvas.create_polygon(given_nodes, fill="blue", outline="white")
+        #canvas.create_line(x, y, x2, y2, fill="white")
+        reldict.update({tuplas[i]: (x, y)})
+
+
+    #renderoutsides(canvas)
+
+    for i in range(len(ListaTuplasLista)):
+
+        a, b = ListaTuplasLista[i]
+        xa, ya = reldict[a]
+        xb, yb = reldict[b]
+
+        color = "blue"
+        offset = -5
+        operand = -1
+        if xa > xb:
+            color = "red"
+            offset = -offset
+            operand = 1
+
+        if a == b:
+            canvas.create_oval(xa - radius, ya - radius, xa + radius, ya + radius, outline="green", width=2)
+        else:
+            canvas.create_line(
+                xa - offset,
+                ya - offset,
+                xb - offset,
+                yb - offset,
+                fill=color, arrow="last", width= 2)
+
+
+
+    for i in range(len(items)):
+        x, y = points[i]
+        canvas.create_text(x, y, fill="white", text=items[i], font="Times 15 bold")
+
+    canvas.pack(expand=True, fill="both")
+
 def RepresentarMatriz(Lista_a, Lista_b, ListasString_Union, RelacionStringFormat):
     if Lista_a == 0 and Lista_b == 0:
         ErrorNR = Toplevel()
@@ -317,6 +437,12 @@ def EnviarTodos(ListaTuplas, ListaSeleccion_f):
 def relacionesLista(entry_a, entry_b, ListaTuplas):
     global Lista_a
     global Lista_b
+    global ListaTuplasLista
+
+    Lista_a = []
+    Lista_b = []
+    ListaTuplasLista = []
+
     Lista_a = entry_a.get().split(",")
     Lista_b = entry_b.get().split(",")
     valor_a = entry_a.get()
@@ -342,7 +468,6 @@ def relacionesLista(entry_a, entry_b, ListaTuplas):
         ListaTuplas.delete(0, tkinter.END)
 
         # Rellenado de la listbox
-        ListaTuplasLista = []
         for elemento_a in conjunto_a:
             for elemento_b in conjunto_b:
                 ListaTuplasLista.append((elemento_a, elemento_b))
@@ -476,7 +601,7 @@ button = ttk.Button(frame1, text="Matriz", style="Button.TButton", command=lambd
 button.grid(row=4, column=0, padx=10, pady=10, sticky="ew")
 button = ttk.Button(frame1, text="Sagital", style="Button.TButton", command=click_boton)
 button.grid(row=5, column=0, padx=10, pady=10, sticky="ew")
-button = ttk.Button(frame1, text="Grafo", style="Button.TButton", command=click_boton)
+button = ttk.Button(frame1, text="Grafo", style="Button.TButton", command=grafo)
 button.grid(row=6, column=0, padx=10, pady=10, sticky="ew")
 
 # segundo frame
