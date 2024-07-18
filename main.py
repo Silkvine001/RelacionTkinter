@@ -155,6 +155,9 @@ def RepresentarMatriz(Lista_a, Lista_b, ListasString_Union, RelacionStringFormat
         matriz_binaria_R = [[0 for i in range(len(Lista_b))] for j in range(len(Lista_a))]
 
         # Completa la matriz binaria
+
+
+
         for i, elemento_a in enumerate(Lista_a):
             for j, elemento_b in enumerate(Lista_b):
                 if (elemento_a, elemento_b) in RelacionR:
@@ -170,7 +173,7 @@ def RepresentarMatriz(Lista_a, Lista_b, ListasString_Union, RelacionStringFormat
         for i in range(len(Lista_b)):
             for j in range(len(Lista_a)):
                 print(matriz_binaria_R[j][i], end=' | ')
-            print()#Salto de linea    
+            print()#Salto de linea
 
         print()#Salto de linea
         A_B_Label = ttk.Label(frame2, text=ListasString_Union, foreground="white", font=("Ariel", 13, "bold"))
@@ -184,7 +187,7 @@ def RepresentarMatriz(Lista_a, Lista_b, ListasString_Union, RelacionStringFormat
 def PropiedadesRel(RelacionR, Lista_a, Lista_b):
     global RelacionStringFormat
     global ListasString_Union
-    if Lista_a == 0 and Lista_b == 0:
+    if Lista_a == 0 or Lista_b == 0 or RelacionR == 0:
         ErrorNR = Toplevel()
         ErrorNR.geometry("380x160")
         ErrorNR.resizable(False, False)
